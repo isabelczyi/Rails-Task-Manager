@@ -1,0 +1,11 @@
+<%= simple_form_for(task) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :details %>
+  <%= f.text_field :details %>
+  <% if !task.new_record? %>
+    <%= f.check_box :completed, { class: "class-name", style: "style"}, 1, 0 %>
+    <%= label_tag(:completed, "Mark as complete") %>
+  <% end %>
+  <%= f.submit %>
+<% end %>
