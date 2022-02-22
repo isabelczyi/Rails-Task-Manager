@@ -13,5 +13,9 @@ Rails.application.routes.draw do
 
   # delete "tasks/:id",      to: "tasks#destroy"
 
-  resources :tasks
+  resources :tasks  do
+    member do
+      post :completed_toggle
+    end
+  end
 end

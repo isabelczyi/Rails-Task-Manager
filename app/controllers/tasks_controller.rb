@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
-  before_action :find_task, only: [:show, :edit, :update, :destroy]
+  before_action :find_task, only: [:show, :edit, :update, :destroy, :completed_toggle]
 
   def index
     @tasks = Task.all
+    @trash = "<i class='fa-solid fa-trash'></i>"
   end
 
   def show
@@ -30,6 +31,13 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
+
+    redirect_to tasks_path
+  end
+
+  def completed_toggle
+    @task.toggle! :completed
+    @task.save
 
     redirect_to tasks_path
   end
