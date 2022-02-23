@@ -39,7 +39,10 @@ class TasksController < ApplicationController
     @task.toggle! :completed
     @task.save
 
-    redirect_to tasks_path
+    respond_to do |format|
+      format.html  { redirect_to tasks_path }
+      format.json  { render :json => @task }
+    end
   end
 
   private

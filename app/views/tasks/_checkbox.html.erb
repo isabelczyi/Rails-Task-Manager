@@ -1,11 +1,4 @@
-<% if task.completed %>
-  <% @checkbox = "<i class='fa-solid fa-square-check checkbox'></i>" %>
-  <%= link_to sanitize(@checkbox), completed_toggle_task_path(task), remote: true, method: :post%>
-
-<% else %>
-  <% @checkbox = '<i class="fa-solid fa-square checkbox"></i>' %>
-  
-  <%= link_to sanitize(@checkbox), completed_toggle_task_path(task), remote: true, method: :post%>
-
+<%= link_to completed_toggle_task_path(task), id: 'checkbox', data: { task_id: task.id } do %>
+  <% checked_class = task.completed ? 'fa-square-check' : 'fa-square' %>
+  <i class='fa-solid <%= checked_class %> checkbox'></i>
 <% end %>
-
